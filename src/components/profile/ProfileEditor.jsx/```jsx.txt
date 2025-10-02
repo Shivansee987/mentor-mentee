@@ -1,0 +1,48 @@
+```jsx
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../context/AuthContext'
+
+
+export default function ProfileEditor(){
+const { user, login } = useContext(AuthContext)
+const [name, setName] = useState(user?.name || '')
+const [skills, setSkills] = useState((user?.skills || []).join(', '))
+const [availability, setAvailability] = useState(user?.availability || '')
+
+
+function save(){
+const updated = { ...user, name, skills: skills.split(',').map(s=>s.trim()), availability }
+login(updated)
+alert('Profile updated (local mock). In production, call API to save.')
+}
+
+
+return (
+<div className="max-w-2xl mx-auto card">
+<h2 className="text-xl font-semibold">Edit Profile</h2>
+<div className="mt-4 space-y-3">
+<label className="block">
+<span className="text-sm">Full name</span>
+<input className="mt-1 block w-full border rounded p-2" value={name} onChange={e=>setName(e.target.value)} />
+</label>
+<label>
+<span className="text-sm">Skills (comma separated)</span>
+<input className="mt-1 block w-full border rounded p-2" value={skills} onChange={e=>setSkills(e.target.value)} />
+</label>
+<label>
+<span className="text-sm">Availability (e.g. Mon-Fri 10:00-13:00)</span>
+<input className="mt-1 block w-full border rounded p-2" value={availability} onChange={e=>setAvailability(e.target.value)} />
+</label>
+
+
+<div>
+<button onClick={save} className="bg-primary text-white px-4 py-2 rounded">Save</button>
+</div>
+</div>
+</div>
+)
+}
+```
+
+
+---

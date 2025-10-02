@@ -1,0 +1,49 @@
+```jsx
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+
+// NOTE: This is a local mock chat UI. For real-time use, integrate Socket.io / Firebase / WebRTC.
+
+
+export default function ChatRoom(){
+const { roomId } = useParams()
+const [messages, setMessages] = useState([
+{ id: 1, from: 'mentor', text: 'Welcome — how can I help?' },
+{ id: 2, from: 'you', text: 'I need help with data structures.' }
+])
+const [text, setText] = useState('')
+
+
+function send(){
+if(!text) return
+setMessages(prev=>[...prev, { id: Date.now(), from: 'you', text }])
+setText('')
+}
+
+
+return (
+<div className="max-w-3xl mx-auto card">
+<h3 className="font-semibold">Chat — Room {roomId}</h3>
+<div className="mt-3 h-72 overflow-auto border rounded p-3 bg-gray-50">
+{messages.map(m=> (
+<div key={m.id} className={`mb-2 max-w-xs ${m.from==='you' ? 'ml-auto text-right' : ''}`}>
+<div className={`inline-block p-2 rounded ${m.from==='you' ? 'bg-primary text-white' : 'bg-white border'}`}>
+{m.text}
+</div>
+</div>
+))}
+</div>
+
+
+<div className="mt-3 flex gap-2">
+<input value={text} onChange={e=>setText(e.target.value)} placeholder="Type a message" className="flex-1 border rounded p-2" />
+<button onClick={send} className="px-4 py-2 bg-primary text-white rounded">Send</button>
+</div>
+</div>
+)
+}
+```
+
+
+---

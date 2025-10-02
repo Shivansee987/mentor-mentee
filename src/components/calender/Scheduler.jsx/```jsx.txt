@@ -1,0 +1,49 @@
+```jsx
+import React, { useState } from 'react'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
+
+
+export default function Scheduler(){
+const [date, setDate] = useState(new Date())
+
+
+function onChange(d){
+setDate(d)
+}
+
+
+return (
+<div className="max-w-3xl mx-auto card">
+<h3 className="font-semibold">Schedule a Meeting</h3>
+<p className="text-sm text-gray-500 mt-1">Select a date and add a time in the notes before confirming.</p>
+
+
+<div className="mt-4 flex flex-col md:flex-row gap-4">
+<div>
+<Calendar onChange={onChange} value={date} />
+</div>
+<div className="flex-1">
+<div className="card">
+<p>Selected: {date.toString()}</p>
+<label className="block mt-2">
+<span className="text-sm">Meeting Title</span>
+<input className="mt-1 block w-full border rounded p-2" />
+</label>
+<label className="block mt-2">
+<span className="text-sm">Notes</span>
+<textarea className="mt-1 block w-full border rounded p-2" rows={4}></textarea>
+</label>
+
+
+<button className="mt-3 bg-primary text-white px-4 py-2 rounded">Confirm</button>
+</div>
+</div>
+</div>
+</div>
+)
+}
+```
+
+
+---

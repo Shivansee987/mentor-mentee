@@ -1,0 +1,38 @@
+```jsx
+import React, { createContext, useState, useEffect } from 'react'
+
+
+export const AuthContext = createContext()
+
+
+export function AuthProvider({ children }){
+const [user, setUser] = useState(null)
+const [token, setToken] = useState(null)
+
+
+useEffect(()=>{
+// Restore from localStorage
+const s = localStorage.getItem('mm_user')
+if(s) setUser(JSON.parse(s))
+},[])
+
+
+function login(userObj){
+setUser(userObj)
+localStorage.setItem('mm_user', JSON.stringify(userObj))
+}
+
+
+function logout(){
+setUser(null)
+localStorage.removeItem('mm_user')
+}
+
+
+const value = { user, token, login, logout }
+return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+```
+
+
+---

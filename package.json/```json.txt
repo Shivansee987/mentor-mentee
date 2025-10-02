@@ -1,0 +1,26 @@
+```json
+{
+"name": "iilm-mentor-mentee-frontend",
+"version": "1.0.0",
+"private": true,
+"scripts": {
+"dev": "vite",
+"build": "vite build",
+"preview": "vite preview"
+},
+"dependencies": {
+"react": "^18.2.0",
+"react-dom": "^18.2.0",
+"react-router-dom": "^6.14.1",
+"axios": "^1.4.0",
+"react-icons": "^4.10.1",
+"react-calendar": "^4.0.0"
+},
+"devDependencies": {
+"vite": "^5.0.0",
+"tailwindcss": "^4.2.0",
+"postcss": "^8.4.26",
+"autoprefixer": "^10.4.14"
+}
+}
+```

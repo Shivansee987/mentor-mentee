@@ -1,0 +1,42 @@
+```jsx
+])
+const [title, setTitle] = useState('')
+const [link, setLink] = useState('')
+
+
+function upload(e){
+e.preventDefault()
+if(!title) return
+setResources(prev=>[{ id: Date.now().toString(), title, link: link||'#' }, ...prev])
+setTitle('')
+setLink('')
+}
+
+
+return (
+<div className="card max-w-3xl mx-auto">
+<h3 className="font-semibold">Resource Library</h3>
+<form onSubmit={upload} className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-2">
+<input placeholder="Title" className="border rounded p-2" value={title} onChange={e=>setTitle(e.target.value)} />
+<input placeholder="Link (optional)" className="border rounded p-2" value={link} onChange={e=>setLink(e.target.value)} />
+<button className="bg-primary text-white px-4 py-2 rounded">Upload</button>
+</form>
+
+
+<div className="mt-4">
+{resources.map(r=> (
+<div key={r.id} className="p-2 border rounded mb-2 flex justify-between">
+<div>
+<div className="font-medium">{r.title}</div>
+</div>
+<a href={r.link} className="text-primary">Open</a>
+</div>
+))}
+</div>
+</div>
+)
+}
+```
+
+
+---
